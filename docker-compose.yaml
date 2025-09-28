@@ -1,0 +1,17 @@
+services:
+  gitar_app:
+    image: guitarstore:1
+    # user: "node"
+    working_dir: /app
+    environment:
+      - NODE_ENV=development
+    volumes:
+      - ./:/app
+      - /app/node_modules # Evita conflictos con los node_modules del host
+
+    expose:
+      - "5173"
+    ports: # use if it is necessary to expose the container to the host machine
+      - "8000:5173"
+    # command: "npm start"
+    command: npm run dev -- --host
